@@ -4,7 +4,7 @@ subtitle: "Recreating the Scurvy DAGs with Beautiful Visualizations"
 format:
   html: default
 execute:
-  echo: true
+  echo: false
   eval: true
 jupyter: python3
 ---
@@ -38,7 +38,7 @@ plt.rcParams['figure.dpi'] = 150
 plt.rcParams['savefig.dpi'] = 300
 
 #print("DAFT package imported successfully!")
-p#rint("Ready to create beautiful DAGs!")
+# print("Ready to create beautiful DAGs!")
 
 # Last expression is shown as cell output (helps visibility in Run Cell / render)
 #"Environment ready: daft, matplotlib, numpy loaded."
@@ -48,10 +48,6 @@ p#rint("Ready to create beautiful DAGs!")
 
 **Historical Context:** In 1747, James Lind discovered that lemons prevent scurvy through a controlled experiment. However, the understanding was incomplete - they knew lemons worked but not why.
 
-**Your Task:** Recreate this DAG showing the relationship between lemons and scurvy prevention.
-
-**Reference Image:**
-![](https://raw.githubusercontent.com/flyaflya/persuasive/642288ea5f79050c05801c3d127084ac0f361a01/images/scurvy2.png)
 
 ```{python}
 #| label: dag-1-1747
@@ -80,21 +76,16 @@ pgm.add_node("scurvy_prevention", "Scurvy\nPrevention", 3.25, 1, aspect=3, scale
 pgm.add_edge("lemons", "scurvy_prevention")
 
 pgm.render()
-plt.title("Simplified Lind's Model (1747)")
+plt.title("Simplified Lind's Model (1747)");
 ```
 
 ### DAG 2: The Misguided Belief (Wrong Understanding)
 
 **Historical Context:** Over time, people came to believe it was the acid in lemons that killed bacteria which was causing scurvy. This led to lemons being replaced by limes (cheaper but less Vitamin C) or just using acids like vinegar, causing scurvy to return.
 
-**Your Task:** Recreate this DAG showing the incorrect understanding of the data generating process.
-
-**Reference Image:**
-![](https://raw.githubusercontent.com/flyaflya/persuasive/8aaffd0a3c967d0a26f506232f998130847be3e8/images/scurvy.png)
-
 ```{python}
 #| label: dag-2-misguided
-#| echo: true
+#| echo: false
 #| fig-cap: "DAG 2: The misguided belief — Acid kills bacteria that (supposedly) causes scurvy (incorrect)"
 
 # DAG 2: Recreating reference — Acid → Bacteria Death → Scurvy Prevention (wrong understanding)
@@ -132,23 +123,17 @@ pgm.add_edge("bacteria_death", "scurvy_prevention", directed=True,
              plot_params={**arrow_style, 'color': 'brown'})
 
 pgm.render()
-plt.title("Updated Bacterial Theory (Late 19th Century)")
+plt.title("Updated Bacterial Theory (Late 19th Century)");
 ```
 
 ### DAG 3: The 1928 Understanding (Complete and Correct)
 
 **Historical Context:** In 1928, the true mechanism was discovered - it was Vitamin C (ascorbic acid) that prevented scurvy. This complete understanding finally explained why lemons worked and why the acid theory was wrong.
 
-**Your Task:** Recreate this DAG showing the complete and correct understanding of the scurvy data generating process.
-
-**Reference Image:**
-![](https://raw.githubusercontent.com/flyaflya/persuasive/main/images/scurvy3.png)
-
-
 
 ```{python}
 #| label: dag-3-1928
-#| echo: true
+#| echo: false
 #| fig-cap: "DAG 3: The 1928 understanding — Vitamin C prevents scurvy (complete and correct)"
 
 # DAG 3: 1928 understanding — Vitamin C → Collagen Synthesis → Scurvy Prevention (complete and correct)
@@ -185,138 +170,5 @@ pgm.add_edge("collagen_synthesis", "scurvy_prevention", directed=True,
              plot_params={**arrow_style, 'color': 'steelblue'})
 
 pgm.render()
-plt.title("Simplified Modern Understanding (1930s onwards)")
+plt.title("Simplified Modern Understanding (1930s onwards)");
 ```
-
-## Student Requirements Section: Mastering DAFT Visualization {#student-analysis-section}
-
-**Your Task:** Demonstrate your mastery of DAFT through comprehensive recreation of the three scurvy DAGs and thoughtful analysis. The bulk of your grade comes from successfully recreating the DAGs and answering the discussion questions.
-
-::: {.callout-important}
-## 📊 Challenge Requirements
-
-**Complete all DAG recreation sections:**
-
-1. **DAG 1 (1747):** Lemons prevent scurvy - correct but incomplete
-2. **DAG 2 (Misguided):** Acid kills bacteria - wrong understanding  
-3. **DAG 3 (1928):** Vitamin C prevents scurvy - complete and correct
-4. **Optional:** Add a little professional styling to the DAGs to make them more visually appealing (example: use nice fill colors and/or enclose the text in the ellipse completely).
-:::
-
-### Professional Quality Standards
-
-**Your DAGs should:**
-
-- (90% grade): Accurately recreate the reference images
-- (100% grade): Add professional colors and possibly play with shapes to make it more visually appealing (example: use nice fill colors and/or enclose the text in the ellipse completely). Erase everything but the story of scurvy and the three DAGs
-- Include clear, readable labels
-- Demonstrate understanding of DAFT customization options
-- Be suitable for a business or academic audience
-
-### Example: Professional DAFT Node Styling
-
-Here's an example (see @fig-example-node) of how to create a professionally styled node in DAFT with nice captions and references to the figure:
-
-```{python}
-#| label: fig-example-node
-#| echo: true
-#| fig-cap: "Example: Professional DAFT Node Styling"
-
-import daft
-import matplotlib.pyplot as plt
-
-# Create a PGM object
-pgm = daft.PGM(dpi=150, alternate_style="outer")
-
-# Example of a professionally styled node
-pgm.add_node("vitamin_c", "Vitamin C\nIntake" + r" $(X)$", 1, 1, aspect = 3, scale = 1.1,
-             plot_params={
-                 'facecolor': 'lightgreen', 
-                 'edgecolor': 'darkgreen', 
-                 'linewidth': 2,
-                 'alpha': 0.8,
-             })
-pgm.add_node("health", "Healthiness\n"+r" $(Y)$", 3.25, 1, aspect = 3, scale = 1.1,
-             plot_params={
-                 'facecolor': 'thistle', 
-                 'edgecolor': 'purple', 
-                 'linewidth': 2,
-                 'alpha': 0.8,
-             })
-pgm.add_edge("vitamin_c", "health")
-
-pgm.render()
-```
-
-**Key Styling Parameters:**
-
-- `facecolor`: Background color of the node
-- `edgecolor`: Border color of the node  
-- `linewidth`: Thickness of the border
-- `alpha`: Transparency (0.0 to 1.0)
-- `fontsize`: Size of text inside the node
-- `aspect`: Width/height aspect ratio of the node (default: 1.0)
-- `scale`: Height of the node (default: 1.0)
-
-## Getting Started: Repository Setup 🚀
-
-::: {.callout-important}
-## 📁 Getting Started
-
-**Step 1:** Create a new repository in your GitHub account named "daftChallenge" (forked from [https://github.com/flyaflya/daftChallenge](https://github.com/flyaflya/daftChallenge))
-
-**Step 2:** Clone your repository locally using Cursor (or VS Code)
-
-**Step 3:** Be sure to install DAFT in your environment: `pip install 'daft-pgm'`.
-
-**Step 4:** Modify your local copy of this `index.qmd` file  to complete the challenge and get it to be a github pages website.
-:::
-
-### Getting Started Tips
-
-## Key DAFT Resources
-
-**Essential DAFT Documentation:**
-
-- [DAFT Documentation](https://docs.daft-pgm.org/en/latest/)
-- [DAFT Examples](https://docs.daft-pgm.org/en/latest/examples/)
-- [Matplotlib Colors](https://matplotlib.org/stable/gallery/color/named_colors.html)
-
-**Key DAFT Parameters to Explore:**
-
-- `plot_params`: Dictionary of matplotlib parameters for styling
-- `aspect`: Controls node width (default: 1.0)
-- `scale`: Controls node size (default: 1.0)
-- `fontsize`: Text size in the node
-- `alternate`: Use alternative node shape (True/False)
-
-## Grading Rubric 🎓
-
-**90% Grade:** Successfully recreate all 3 DAGs with good visual quality.
-
-**100% Grade:** Recreate all 3 DAGs with enhanced quality and visual aesthetics (example: use nice fill colors and/or enclose the text in the ellipse completely).
-
-## Submission Checklist ✅
-
-**Minimum Requirements (Required for Any Points):**
-
-- [ ] Created repository named "daftChallenge" in your GitHub account (forked from [https://github.com/flyaflya/daftChallenge](https://github.com/flyaflya/daftChallenge))
-- [ ] Cloned repository locally using Cursor (or VS Code)
-- [ ] Installed DAFT package successfully
-- [ ] Document rendered to HTML successfully
-- [ ] HTML files uploaded to your repository
-- [ ] GitHub Pages enabled and working
-- [ ] Site accessible at `https://[your-username].github.io/daftChallenge/`
-
-**90% Grade Requirements:**
-
-- [ ] Successfully recreate all 3 DAGs
-- [ ] Good visual quality with appropriate styling
-
-**100% Grade Requirements:**
-
-- [ ] All DAG recreations completed with professional quality
-- [ ] Erase everything but the story of scurvy and the three DAGs (make it a nice concise narrative about scurvy)
-
-
-
